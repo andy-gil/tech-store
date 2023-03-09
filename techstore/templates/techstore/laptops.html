@@ -1,0 +1,45 @@
+<!doctype html>
+{% extends 'techstore/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row row-cols-md-1 row-cols-lg-2 " style="margin-left: 50px">
+        {% for laptop in laptops_list %}
+            <div class="col mt-4">
+                <div class="card text-center" style="width: 28rem; height: 100%;">
+                    <img src="{{ laptop.laptops_image }}" style="height: 400px" >
+                    <div class="card-body">
+                        <h5 class="card-title">{{ laptop.laptops_name }} </h5>
+                        <a href="{% url 'techstore:detaillp' laptop.id %}" class="btn btn-primary stretched-link"></a>
+                            <div class="row">
+                                <div class="col-6">Category: </div>
+                                <div class="col-6">Rating: </div>
+                                <br><br><br>
+                            </div>
+                        <p class="card-text mt-6">Description: </p>
+                        <a href="{% url 'techstore:cart' %}">
+                            <button data-product={{laptop.id}} data-action="add"
+                            class="btn btn-outline-secondary add-btn add-to-cart">Add To Cart</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container text-center mt-3">
+    <ul class="pagination justify-content-center">
+        {% if laptops_list.has_previous %}
+            <li class="page-item"><a href="?page=1" class="page-link">&laquo;</a></li>
+            <li clsas="page-item"><a href="?page={{ laptops_list.previous_page_number }}" class="page-link">Previous</a></li>
+        {% endif %}
+        {% if laptops_list.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ laptops_list.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ laptops_list.paginator.num_pages }}">&raquo;</a></li>
+        {% endif %}
+    </ul>
+    <br>
+</div>
+
+{% endblock %}

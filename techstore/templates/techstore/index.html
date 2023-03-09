@@ -1,0 +1,98 @@
+{% extends 'techstore/base.html' %}
+{% load static %}
+{% block body %}
+
+<!-- carousel slide -->
+<div class="carousel slide" data-bs-ride="carousel" id="carouselExampleSlidesOnly">
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="
+        background-image: url('https://www.headphonesty.com/wp-content/uploads/2020/10/A_model_wearing_Bowers___Wilkins_PX5_Wireless_on_ear_headphones-1100x678.jpg');
+        height: 70vh;
+        width: 100%;
+        background-position: center;
+        background-size: cover;">
+    </div>
+    <div class="carousel-item" style="
+        background-image: url('https://cdn.gobankingrates.com/wp-content/uploads/2021/06/father-son-play-video-games-on-couch_iStock-1209015108.jpg');
+        height: 70vh;
+        width: 100%;
+        background-position: center;
+        background-size: cover;">
+    </div>
+    <div class="carousel-item" style="
+        background-image: url('https://media.cnn.com/api/v1/images/stellar/prod/221223085502-phones-notifications-interruptions-stock.jpg?c=original');
+        height: 70vh;
+        width: 100%;
+        background-position: center;
+        background-size: cover;">
+    </div>
+  </div>
+</div>
+
+<!-- home page items -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 ">
+            <div class="card index-content">
+                <h4 class="card-title">Laptops</h4>
+                <img src="{% static 'images/laptops.jpg' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <a href="{% url 'techstore:laptops' %}" class="btn btn-primary stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 ">
+            <div class="card index-content">
+                <h4 class="card-title">Desktops</h4>
+                <img src="{% static 'images/desktop.webp' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <a href="{% url 'techstore:desktops' %}" class="btn btn-primary stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 ">
+            <div class="card index-content">
+                <h4 class="card-title">Tablets</h4>
+                <img src="{% static 'images/tablets.jpg' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <a href="" class="btn btn-primary stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 ">
+            <div class="card index-content">
+                <h4 class="card-title">Phones</h4>
+                <img src="{% static 'images/phones.png' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <a href="" class="btn btn-primary stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 ">
+            <div class="card index-content">
+                <h4 class="card-title">Tv</h4>
+                <img src="{% static 'images/tv.jpg' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <a href="" class="btn btn-primary stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 ">
+            <div class="card index-content">
+                <h4 class="card-title">Gaming</h4>
+                <img src="{% static 'images/gaming.webp' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <a href="" class="btn btn-primary stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,155 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+    <script crossorigin="anonymous"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+    </script>
+</head>
+<body>
+
+<!-- first navbar -->
+<nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'techstore:index' %}">ElectStore</a>
+        <form class="d-flex" role="search" action="" method="GET">
+            <input name="search_name" aria-label="Search" class="form-control me-2" placeholder="Search" type="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+
+            <a href="{% url 'techstore:checkout' %}">
+                <img alt="" class="usericon" src="{% static 'images/shopping.png' %}">
+            </a>
+            <p id="cart-total">0</p>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}">
+                    <img class="usericon" alt="" src="{% static url 'login' %}images/useicon.png">
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    <img class="usericon" alt="" src="{% static url 'login' %}images/useicon.png">
+                </a>
+            {% endif %}
+        </form>
+    </div>
+</nav>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- 2nd navbar -->
+<nav class="navbar  navbar-expand-lg bg-body-tertiary ">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'techstore:laptops' %}">Laptop</a>
+                </li>
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" href="{% url 'techstore:desktops' %}">Desktop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Phones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Tv's</a>
+                </li>
+                <li class="nav-item">
+                    <!--
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                        <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                    {% endif %}
+                    -->
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       role="button">
+                        More
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">About Us</a></li>
+                        <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                        <li><a class="dropdown-item" href="#">Employees Only</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    {% block body %}
+
+    {% endblock %}
+
+<!-- footer -->
+<footer>
+    <footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">ElectStore</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</footer>
+
+<!--script-->
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

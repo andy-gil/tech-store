@@ -1,0 +1,40 @@
+{% extends 'techstore/base.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+    body{
+        background: linear-gradient(#e66465, #9198e5);
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-3 col-lg-3 login">
+            <div class="card-body login-form">
+                <form method="POST">
+                    <h3>Register</h3>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field-name">
+                            {{ field.name }}
+                        </div>
+                        <div class="field">
+                            {{ field }}
+                            <hr>
+                        </div>
+                    {% endfor %}
+                    <!--{{ form }}-->
+                    <button class="signupBtn" type="submit">Signup</button>
+
+                    <button class="reg-log">
+                        <a href="{% url 'login' %}" class=" nav-item nav-link">Go To Login</a>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
