@@ -10,6 +10,7 @@ body{
 
 /*cards home page*/
 .card{
+    min-height: 500px;
     margin-top: 2em;
 }
 
@@ -19,6 +20,7 @@ body{
 }
 
 .card-img-top {
+    min-height: 250px;
     width: 100%;
     height: 25vw;
     object-fit: cover;

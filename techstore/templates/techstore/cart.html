@@ -11,46 +11,19 @@
 <body>
 {% block body %}
 
-{% for item in cart.items %}
-    <div class="cart-item">
-        <div class="item-image">
-            <img src="{{ item.product.item_image }}">
-        </div>
-        <div class="item-details">
-            <h3>{{ item.product.item_name }}</h3>
-            <p>{{ item.product.item_desc }}</p>
-            <p>Price: {{ item.product.item_price }}</p>
-            <form method="post" action="{% url 'techstore:remove_from_cart' item.product.id %}">
-                {% csrf_token %}
-                <button type="submit">Remove from Cart</button>
-            </form>
-        </div>
-    </div>
-{% empty %}
+
     <p>Your cart is empty.</p>
+
+
+
+{% for laptop in laptops %}
+  <div class="cart-item">
+    <h4>{{ laptop.laptops_name }}</h4>
+    <p>{{ laptop.laptops_desc }}</p>
+    <p>{{ laptop.laptops_price }}</p>
+    <img src="{{ laptop.laptops_image.url }}" alt="{{ laptop.laptops_name }} image">
+  </div>
 {% endfor %}
-
-
-
-
-
-    {% if laptops %}
-    <h2>Laptops:</h2>
-    <ul>
-    {% for laptop in laptops %}
-      <li>{{ laptop.laptops_name }} - {{ laptop.laptops_price }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-
-  {% if desktops %}
-    <h2>Desktops:</h2>
-    <ul>
-    {% for desktop in desktops %}
-      <li>{{ desktop.desktops_name }} - {{ desktop.desktops_price }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
 
 {% endblock %}
 </body>

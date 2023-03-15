@@ -49,7 +49,6 @@ def cart_view(request):
 
     return render(request, 'techstore/cart.html', context)
 
-
 def desktops(request):
     desktops_objects = Desktops.objects.all()
     search_name = request.GET.get('search_name')
@@ -85,7 +84,34 @@ def detaildt(request, desktops_id):
     }
     return render(request,'techstore/detailDesktop.html', context)
 
-
 def checkout(request):
     context = {}
     return render(request, 'techstore/checkout.html', context)
+
+def add_to_cart(request, item_type, item_id):
+    user = request.user
+    if item_type == "laptop":
+        item = Laptops.objects.get(id=item_id)
+    elif item_type == "desktop":
+        item = Desktops.objects.get(id=item_id)
+    else:
+        # handle error
+        pass
+    cart, created = Cart.objects.get_or_create(user=user)
+    if item_type == "laptop":
+        cart.laptops.add(item)
+    elif item_type == "desktop":
+        cart.desktops.add(item)
+    else:
+        # handle error
+        pass
+    cart.save()
+    return redirect("cart")
+
+def cart(request):
+    user = request.user
+    cart = Cart.objects.get(user=user)
+    laptops = cart.laptops.all()
+    desktops = cart.desktops.all()
+    context = {"laptops": laptops, "desktops": desktops}
+    return render(request, "cart.html", context)

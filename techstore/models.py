@@ -30,6 +30,9 @@ class Desktops(models.Model):
     desktops_image = models.CharField(max_length=200, default="")
 
 class Cart(models.Model):
+    def __str__(self):
+        return f"Cart for {self.user.username}"
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     laptops = models.ManyToManyField(Laptops, blank=True)
     desktops = models.ManyToManyField(Desktops, blank=True)
